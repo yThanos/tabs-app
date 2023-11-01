@@ -1,11 +1,41 @@
-import { Text, View } from "react-native"
+import { Stack, useRouter } from "expo-router";
+import { View, SafeAreaView } from "react-native"
+import { Button, Text } from "react-native-paper";
 
 const HomeCadastros = () => {
+    const router = useRouter();
+    const screens = [
+        'enderecos',
+        'pessoa',
+        'documentos'
+    ]
     return (
-        <View>
-            <Text>Home Cadastros</Text>
-        </View>
+        
+        <SafeAreaView>
+            <Stack.Screen options={{
+                title: 'Cadastros',
+                headerTintColor: '#fff',
+                    headerStyle: {
+                        backgroundColor: '#043F63',
+                    },
+                }}
+            />
+            <View style={{height: '100%', width: '100%', padding: 15, alignItems: 'center'}}>
+                <View>
+                    <Text>Home Cadastros</Text>
+                </View>
+                <View>
+                    {
+                        screens.map((screen, index) => (
+                            <Button key={index} onPress={() => router.push(`/cadastros/${screen}`)}>
+                                <Text>{screen.toUpperCase()}</Text>
+                            </Button>
+                        ))
+                    }
+                </View>
+            </View>
+        </SafeAreaView>
     )
 }
 
-export default HomeCadastros
+export default HomeCadastros;
