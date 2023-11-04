@@ -5,9 +5,7 @@ const List = () => {
     return (
         <View>
             <Text>List</Text>
-            <Link href="/list/1">List #1</Link>
-            <Link href="/list/2">List #2</Link>
-            <Link href="/list/3">List #3</Link>
+            <Link href="/perfil/settings">Configurações da conta</Link>
         </View>
     )
 }

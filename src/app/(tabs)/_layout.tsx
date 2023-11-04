@@ -8,7 +8,6 @@ export default () => {
                 name="home" 
                 options={{
                     tabBarStyle: {height: 70, backgroundColor: "#043F63"},
-                    headerShown: false,
                     tabBarLabel: "Home",
                     tabBarLabelStyle: {color: "#fff", paddingBottom: 5},
                     tabBarIcon: ({focused}) => <TabItem focused={focused} icon="home"/>
@@ -24,10 +23,11 @@ export default () => {
                 }}
             />
             <Tabs.Screen
-                name="list"
+                name="perfil"
                 options={{
                     tabBarStyle: {height: 70, backgroundColor: "#043F63"},
                     tabBarLabel: "Perfil",
+                    headerShown: false,
                     tabBarLabelStyle: {color: "#fff", paddingBottom: 5},
                     tabBarIcon: ({focused}) => <TabItem focused={focused} icon="account"/>
                 }}
