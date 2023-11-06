@@ -4,9 +4,9 @@ const CustomDrawerContent = ({ navigation }) => {
   return (
     <DrawerContentScrollView>
       <DrawerItem
-        label="Option 1"
+        label="Home"
         onPress={() => {
-          navigation.navigate('cadastros/pessoa');
+          navigation.navigate('home');
         }}
       />
       <DrawerItem
