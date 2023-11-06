@@ -1,11 +1,17 @@
-import { Tabs } from "expo-router"
-import TabItem from "../../components/tabItem"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import TabItem from '../../components/tabItem';
+import HomeCadastros from '../(tabs)/cadastros';
+import Home from '../(tabs)/home';
+import List from '../(tabs)/perfil';
 
-export default () => {
+const Tab = createBottomTabNavigator();
+
+const TabRoutes = () => {
     return (
-        <Tabs>
-            <Tabs.Screen 
-                name="home" 
+        <Tab.Navigator>
+            <Tab.Screen 
+                name="home"
+                component={Home}
                 options={{
                     tabBarStyle: {height: 70, backgroundColor: "#043F63"},
                     tabBarLabel: "Home",
@@ -13,8 +19,9 @@ export default () => {
                     tabBarIcon: ({focused}) => <TabItem focused={focused} icon="home"/>
                 }}
                 />
-            <Tabs.Screen
+            <Tab.Screen
                 name="cadastros"
+                component={HomeCadastros}
                 options={{
                     tabBarStyle: {height: 70, backgroundColor: "#043F63"},
                     tabBarLabel: "Cadastros",
@@ -22,8 +29,9 @@ export default () => {
                     tabBarIcon: ({focused}) => <TabItem focused={focused} icon="account-cog"/>
                 }}
             />
-            <Tabs.Screen
+            <Tab.Screen
                 name="perfil"
+                component={List}
                 options={{
                     tabBarStyle: {height: 70, backgroundColor: "#043F63"},
                     tabBarLabel: "Perfil",
@@ -32,6 +40,8 @@ export default () => {
                     tabBarIcon: ({focused}) => <TabItem focused={focused} icon="account"/>
                 }}
             />
-        </Tabs>
+        </Tab.Navigator>
     )
 }
+
+export default TabRoutes;

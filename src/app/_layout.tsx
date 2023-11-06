@@ -1,8 +1,10 @@
-import { Slot, Stack } from "expo-router"
+import { Slot } from "expo-router"
 import { PaperProvider, configureFonts, MD3LightTheme } from "react-native-paper";
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import DrawerRoutes from "./routes/drawer.routes";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -96,9 +98,9 @@ const StackLayout = () => {
 
     return (
         <PaperProvider theme={{ ...theme, fonts }}>
-            <Stack>
-                <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-            </Stack>
+            <NavigationContainer>
+                <DrawerRoutes />
+            </NavigationContainer>
         </PaperProvider>
     )
 }
