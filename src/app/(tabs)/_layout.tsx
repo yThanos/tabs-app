@@ -9,6 +9,7 @@ export default () => {
                 options={{
                     tabBarStyle: {height: 70, backgroundColor: "#043F63"},
                     tabBarLabel: "Home",
+                    headerShown: false,
                     tabBarLabelStyle: {color: "#fff", paddingBottom: 5},
                     tabBarIcon: ({focused}) => <TabItem focused={focused} icon="home"/>
                 }}

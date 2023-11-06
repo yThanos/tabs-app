@@ -2,30 +2,13 @@ import { Stack } from "expo-router";
 import { View, SafeAreaView, useWindowDimensions, FlatList, TouchableOpacity } from "react-native";
 import { Text, Icon } from "react-native-paper";
 import HorizontalCards from "../../components/homeCards/horizontalMenuCards";
+import { Drawer } from "expo-router/drawer";
 
 const Home = () => {
     const {height, width} = useWindowDimensions();
     const data = [["0 hr","timer-sand","Horas trabalhadas"], ["0 hr","archive-clock","xxxxxxxxxx"],["xxxx","account","xxxxxxxxxx"]];
     return (
         <SafeAreaView>
-            <Stack.Screen 
-                options={{
-                    header: () => (
-                        <View style={{justifyContent: "space-between", flexDirection: "row", backgroundColor: "#043F63", paddingTop: 25}}>
-                            <TouchableOpacity onPress={()=>{}}>
-                                <View style={{padding: 10}}>
-                                    <Icon source="menu" size={50} color="#fff"/>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <View style={{padding: 10}}>
-                                    <Icon source="bell" size={50} color="#fff"/>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    )
-                }}
-            />
             <View>
             <View style={{backgroundColor:"#043F63", height: height * 0.1, marginTop: -3}}>
                 <View style={{flexDirection: "row", paddingLeft: 20, paddingTop: 20}}>
