@@ -5,8 +5,11 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from "react";
 import Drawer from "expo-router/drawer";
 import CustomDrawerContent from "./drawer.content";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 SplashScreen.preventAutoHideAsync();
+
+export let logged = "";
 
 const StackLayout = () => {
     const [loaded] = useFonts({
@@ -88,6 +91,7 @@ const StackLayout = () => {
     }, [loaded]);
 
     async function init() {
+        logged = await AsyncStorage.getItem("logged")
         await SplashScreen.hideAsync();
         setAppReady(true);
     }
@@ -95,7 +99,7 @@ const StackLayout = () => {
     if (!appReady) {
         return <Slot />;
     }
-
+    
     return (
         <PaperProvider theme={{ ...theme, fonts }}>
             <Drawer initialRouteName='(tabs)' drawerContent={CustomDrawerContent}>

@@ -9,6 +9,9 @@
       "expo-router"
     ],
     "name": "tabs-app",
-    "slug": "tabs-app"
+    "slug": "tabs-app",
+    "android": {
+      "package": "com.ythanos.tabsapp"
+    }
   }
 }
