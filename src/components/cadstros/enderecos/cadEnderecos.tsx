@@ -1,7 +1,8 @@
-import { ActivityIndicator, SafeAreaView, TextInput, TouchableOpacity, View, Text, StyleSheet } from "react-native"
+import { ActivityIndicator, SafeAreaView, View, StyleSheet } from "react-native"
 import { useEffect, useState } from "react"
 import CheckBox from 'expo-checkbox'
 import useFetch from "../../../hooks/useFetch"
+import { Text, TextInput, Button } from "react-native-paper";
 
 const CadEnderecos = ({cep, handlePress, handleSuccess}) => {
     const [numero, setNumero] = useState('')
@@ -28,12 +29,12 @@ const CadEnderecos = ({cep, handlePress, handleSuccess}) => {
         (error)? <Text>Erro ao carregar</Text> :
         <SafeAreaView>
             <View>
-            <TextInput style={styles.input} placeholder="Logradouro" value={logradouro} onChangeText={(change)=> setLogradouro(change)}/>
-            <TextInput style={styles.input} placeholder="Número" value={numero} onChangeText={(change)=> setNumero(change)}/>
-            <TextInput style={styles.input} placeholder="Complemento" value={complemento} onChangeText={(change)=> setComplemento(change)}/>
-            <TextInput style={styles.input} placeholder="Bairro" value={bairro} onChangeText={(change)=> setBairro(change)}/>
-            <TextInput style={styles.input} placeholder="Cidade" value={cidade} onChangeText={(change)=> setCidade(change)}/>
-            <TextInput style={styles.input} placeholder="Estado" value={estado} onChangeText={(change)=> setEstado(change)}/>
+            <TextInput mode="outlined" label="Logradouro" value={logradouro} onChangeText={(change)=> setLogradouro(change)}/>
+            <TextInput mode="outlined" label="Número" value={numero} onChangeText={(change)=> setNumero(change)}/>
+            <TextInput mode="outlined" label="Complemento" value={complemento} onChangeText={(change)=> setComplemento(change)}/>
+            <TextInput mode="outlined" label="Bairro" value={bairro} onChangeText={(change)=> setBairro(change)}/>
+            <TextInput mode="outlined" label="Cidade" value={cidade} onChangeText={(change)=> setCidade(change)}/>
+            <TextInput mode="outlined" label="Estado" value={estado} onChangeText={(change)=> setEstado(change)}/>
             <View style={{flexDirection: 'row', margin: 2, borderColor: "gray", borderWidth: 1, borderRadius: 10, padding: 10, alignItems: 'center'}}>
                 <CheckBox
                     style={{margin: 2, marginRight: 8}}
@@ -44,12 +45,12 @@ const CadEnderecos = ({cep, handlePress, handleSuccess}) => {
             </View>
         </View>
         <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-            <TouchableOpacity onPress={()=>{
+            <Button onPress={()=>{
                 handlePress(false)
             }}>
                 <Text>Cancelar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>{
+            </Button>
+            <Button onPress={()=>{
                 data.logradouro = logradouro
                 data.numero = numero
                 data.complemento = complemento
@@ -60,7 +61,7 @@ const CadEnderecos = ({cep, handlePress, handleSuccess}) => {
                 handleSuccess({data})
                 }}>
                 <Text>Salvar</Text>
-            </TouchableOpacity>
+            </Button>
         </View>
         </SafeAreaView>
     )

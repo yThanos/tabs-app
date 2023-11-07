@@ -1,4 +1,4 @@
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { View, SafeAreaView } from "react-native"
 import { Button, Text } from "react-native-paper";
 
@@ -10,16 +10,7 @@ const HomeCadastros = () => {
         'documentos'
     ]
     return (
-        
         <SafeAreaView>
-            <Stack.Screen options={{
-                title: 'Cadastros',
-                headerTintColor: '#fff',
-                    headerStyle: {
-                        backgroundColor: '#043F63',
-                    },
-                }}
-            />
             <View style={{height: '100%', width: '100%', padding: 15, alignItems: 'center'}}>
                 <View>
                     <Text>Home Cadastros</Text>

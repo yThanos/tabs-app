@@ -1,4 +1,6 @@
-import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, TouchableOpacity, SafeAreaView } from 'react-native';
+import { Text } from "react-native-paper";
+
 
 const EnderecosCard = ({ endereco }) => {
     const { logradouro, numero, bairro, localidade, uf, ind_corresp } = endereco;

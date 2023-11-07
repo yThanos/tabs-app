@@ -1,6 +1,6 @@
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { ActivityIndicator, SafeAreaView, ScrollView, TouchableOpacity, View, Image, Dimensions } from "react-native"
-import useFetch from "../../hooks/useFetch";
+import useFetch from "../../../hooks/useFetch";
 import { useEffect, useState } from "react";
 import { SelectList } from "react-native-dropdown-select-list";
 import { StyleSheet } from "react-native";
@@ -64,19 +64,6 @@ const Pessoa = () => {
 
     return (
         <SafeAreaView>
-            <Stack.Screen options={{
-                headerLeft: () => (
-                    <TouchableOpacity onPress={() => router.back()}>
-                        <Image style={{height: 30, width: 30, marginLeft: 10}} source={{uri: "https://cdn-icons-png.flaticon.com/512/0/340.png"}}/>
-                    </TouchableOpacity>
-                ),
-                title: 'Dados Pessoais',
-                headerTintColor: '#fff',
-                    headerStyle: {
-                        backgroundColor: '#043F63',
-                    },
-                }}
-            />
             <View style={{width: '100%', height: '100%', alignItems: 'center'}}>
                 <Text>Pessoa</Text>
                 <ScrollView showsVerticalScrollIndicator={false}>
@@ -84,19 +71,16 @@ const Pessoa = () => {
                         (loading)? (<ActivityIndicator size="large" color="#0000ff" />) : (error)? (<Text>{error}</Text>) : (
                             <SafeAreaView>
                                 <View style={{alignItems: 'center'}} pointerEvents={readOnly?"none":"auto"}>
-                                    <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>Nome:</Text>
-                                    <TextInput style={style(readOnly, width).input}
-                                        placeholder="Nome" value={nome} onChangeText={(change)=>setNome(change)}
+                                    <TextInput mode="outlined" style={style(readOnly, width).input}
+                                        label="Nome" value={nome} onChangeText={(change)=>setNome(change)}
                                     />
-                                    <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>Nome social:</Text>
-                                    <TextInput style={style(readOnly, width).input}
-                                        placeholder="Nome social" value={social} onChangeText={(change)=>setSocial(change)}
+                                    <TextInput mode="outlined" style={style(readOnly, width).input}
+                                        label="Nome social" value={social} onChangeText={(change)=>setSocial(change)}
                                     />
                                     <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>Sexo:</Text>
                                     
-                                    <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>CPF:</Text>
-                                    <TextInput style={style(readOnly, width).input}
-                                        placeholder="CPF" value={cpf} onChangeText={(change)=>setCpf(change)}
+                                    <TextInput mode="outlined" style={style(readOnly, width).input}
+                                        label="CPF" value={cpf} onChangeText={(change)=>setCpf(change)}
                                         render={(props) => (<MaskInput {...props} mask={[/\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-',/\d/, /\d/]} />)}
                                     />
                                     <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>Data de nascimento:</Text>
@@ -117,9 +101,8 @@ const Pessoa = () => {
                                             <Image style={{height: 30, width: 30}} source={{uri: "https://cdn-icons-png.flaticon.com/512/42/42253.png"}}/>
                                         </TouchableOpacity>
                                     </View>
-                                    <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>NIS:</Text>
-                                    <TextInput style={style(readOnly, width).input}
-                                        placeholder="NIS" value={nis} onChangeText={(change)=>setNis(change)}
+                                    <TextInput mode="outlined" style={style(readOnly, width).input}
+                                        label="NIS" value={nis} onChangeText={(change)=>setNis(change)}
                                     />
                                     <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>Estado civil:</Text>
                                     <SelectList boxStyles={{width: width * 0.85, backgroundColor: (readOnly)?"#ccc":"#fff"}}
@@ -127,13 +110,11 @@ const Pessoa = () => {
                                         data={estadoCivil}
                                         setSelected={setEstado}
                                     />
-                                    <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>Nome do pai:</Text>
-                                    <TextInput style={style(readOnly, width).input}
-                                        placeholder="Nome do pai" value={pai} onChangeText={(change)=>setPai(change)}
+                                    <TextInput mode="outlined" style={style(readOnly, width).input}
+                                        label="Nome do pai" value={pai} onChangeText={(change)=>setPai(change)}
                                     />
-                                    <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>Nome da mãe:</Text>
-                                    <TextInput style={style(readOnly, width).input} 
-                                        placeholder="Nome da mãe" value={mae} onChangeText={(change)=>setMae(change)}
+                                    <TextInput mode="outlined" style={style(readOnly, width).input} 
+                                        label="Nome da mãe" value={mae} onChangeText={(change)=>setMae(change)}
                                     />
                                     <Text style={{alignSelf: 'flex-start', paddingLeft: 10}}>Nacionalidade:</Text>
                                     <SelectList boxStyles={{width: width * 0.85, backgroundColor: (readOnly)?"#ccc":"#fff"}}
@@ -209,9 +190,6 @@ export default Pessoa;
 const style = (readOnly, width)=> StyleSheet.create({
     input:  {
         margin: 2,
-        borderColor: "gray",
-        borderWidth: 1,
-        borderRadius: 10,
         padding: 10,
         width: width * 0.85,
         backgroundColor: (readOnly)?"#ccc":"#fff"

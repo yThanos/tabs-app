@@ -2,8 +2,8 @@ import { Modal, SafeAreaView, ScrollView, TouchableOpacity } from "react-native"
 import { View } from "react-native"
 import { useState } from "react";
 import { Button, Text, TextInput } from "react-native-paper";
-import CadEnderecos from "../../components/cadstros/enderecos/cadEnderecos";
-import EnderecosCard from "../../components/cadstros/enderecos/enderecosCard";
+import CadEnderecos from "../../../components/cadstros/enderecos/cadEnderecos";
+import EnderecosCard from "../../../components/cadstros/enderecos/enderecosCard";
 
 const Enderecos = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -36,7 +36,7 @@ const Enderecos = () => {
                     <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#000000aa"}}>
                         <View style={{backgroundColor: "#FFF", padding: 20, borderRadius: 10, width: "90%"}}>
                             <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-                                <TextInput style={{margin: 2, borderColor: "gray", borderWidth: 1, borderRadius: 10, padding: 10, width: "75%"}} 
+                                <TextInput mode="outlined" style={{margin: 2, borderColor: "gray", borderWidth: 1, borderRadius: 10, padding: 10, width: "75%"}} 
                                     placeholder="CEP" value={cep} onChangeText={(change)=>setCep(change)}
                                 />
                                 <TouchableOpacity onPress={()=>{setShowResto(true)}}>
