@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { View, SafeAreaView, useWindowDimensions, FlatList, TouchableOpacity } from "react-native";
-import { Text } from "react-native-paper";
+import { IconButton, Text } from "react-native-paper";
 import HorizontalCards from "src/components/homeCards/horizontalMenuCards";
 
 const Home = () => {
     const {height, width} = useWindowDimensions();
     const data = [["0 hr","timer-sand","Horas trabalhadas"], ["0 hr","archive-clock","xxxxxxxxxx"],["xxxx","account","xxxxxxxxxx"]];
+    const [grid, setGrid] = useState(false);
     return (
         <SafeAreaView>
             <View>
@@ -30,6 +32,13 @@ const Home = () => {
                         showsHorizontalScrollIndicator={false}
                         horizontal={true}
                     />
+                </View>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 25, paddingRight: 15, alignItems: 'center'}}>
+                    <Text style={{fontSize: 18, fontFamily:"Oxanium-Bold", color: "#043F63"}}>Ocorrências</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <IconButton icon={"view-list"} size={30} iconColor={grid?"grey":"#FF7A0F"} onPress={()=>setGrid(false)} />
+                        <IconButton icon={"view-module"} size={30} iconColor={grid?"#FF7A0F":"grey"} onPress={()=>setGrid(true)} style={{marginLeft: -5}} />
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
