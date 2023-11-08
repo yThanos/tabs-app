@@ -1,9 +1,9 @@
-import { Modal, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { Modal, SafeAreaView, ScrollView } from "react-native";
 import { View } from "react-native"
 import { useState } from "react";
 import { Button, Text, TextInput } from "react-native-paper";
-import CadEnderecos from "../../../components/cadstros/enderecos/cadEnderecos";
-import EnderecosCard from "../../../components/cadstros/enderecos/enderecosCard";
+import CadEnderecos from "src/components/cadstros/enderecos/cadEnderecos";
+import EnderecosCard from "src/components/cadstros/enderecos/enderecosCard";
 
 const Enderecos = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -39,9 +39,9 @@ const Enderecos = () => {
                                 <TextInput mode="outlined" style={{margin: 2, borderColor: "gray", borderWidth: 1, borderRadius: 10, padding: 10, width: "75%"}} 
                                     placeholder="CEP" value={cep} onChangeText={(change)=>setCep(change)}
                                 />
-                                <TouchableOpacity onPress={()=>{setShowResto(true)}}>
+                                <Button onPress={()=>{setShowResto(true)}}>
                                     <Text>Pesquisar</Text>
-                                </TouchableOpacity>
+                                </Button>
                             </View>
                             {
                             (showResto)? (<CadEnderecos cep={cep} handlePress={(bool)=>{setModalVisible(bool);setShowResto(false)}} handleSuccess={(item)=>{
@@ -56,12 +56,12 @@ const Enderecos = () => {
                                 setData([...data, item.data])
                                 setModalVisible(false)
                             }}/>):
-                            <TouchableOpacity onPress={() => {
+                            <Button onPress={() => {
                                 setModalVisible(!modalVisible)
                                 setShowResto(false)
                             }}>
                                 <Text>Fechar</Text>
-                            </TouchableOpacity>
+                            </Button>
                             }
                             
                         </View>

@@ -1,25 +1,23 @@
-import { Slot, Stack } from "expo-router"
+import { Slot } from "expo-router"
 import { PaperProvider, configureFonts, MD3LightTheme, Icon } from "react-native-paper";
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from "react";
 import Drawer from "expo-router/drawer";
 import CustomDrawerContent from "./drawer.content";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
-export let logged = "";
-
 const StackLayout = () => {
     const [loaded] = useFonts({
-        'Oxanium-Regular': require("../assets/fonts/Oxanium-Regular.ttf"),
-        'Oxanium-Bold': require("../assets/fonts/Oxanium-Bold.ttf"),
-        'Oxanium-ExtraBold': require("../assets/fonts/Oxanium-ExtraBold.ttf"),
-        'Oxanium-SemiBold': require("../assets/fonts/Oxanium-SemiBold.ttf"),
-        'Oxanium-Light': require("../assets/fonts/Oxanium-Light.ttf"),
-        'Oxanium-ExtraLight': require("../assets/fonts/Oxanium-ExtraLight.ttf"),
-        'Oxanium-Medium': require("../assets/fonts/Oxanium-Medium.ttf")
+        'Oxanium-Regular': require("src/assets/fonts/Oxanium-Regular.ttf"),
+        'Oxanium-Bold': require("src/assets/fonts/Oxanium-Bold.ttf"),
+        'Oxanium-ExtraBold': require("src/assets/fonts/Oxanium-ExtraBold.ttf"),
+        'Oxanium-SemiBold': require("src/assets/fonts/Oxanium-SemiBold.ttf"),
+        'Oxanium-Light': require("src/assets/fonts/Oxanium-Light.ttf"),
+        'Oxanium-ExtraLight': require("src/assets/fonts/Oxanium-ExtraLight.ttf"),
+        'Oxanium-Medium': require("src/assets/fonts/Oxanium-Medium.ttf")
     });
     const [appReady, setAppReady] = useState(false);
 
@@ -91,7 +89,6 @@ const StackLayout = () => {
     }, [loaded]);
 
     async function init() {
-        logged = await AsyncStorage.getItem("logged")
         await SplashScreen.hideAsync();
         setAppReady(true);
     }
@@ -113,7 +110,9 @@ const StackLayout = () => {
                                 elevation: 0,
                             },
                             headerRight: () => (
-                                <Icon  source="bell" size={30} color="#fff"/>
+                                <View style={{paddingRight: 10}}>
+                                    <Icon  source="bell" size={30} color="#fff"/>
+                                </View>
                             )
                         }}
                 />

@@ -1,6 +1,6 @@
 import { View, SafeAreaView, useWindowDimensions, FlatList, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
-import HorizontalCards from "../../components/homeCards/horizontalMenuCards";
+import HorizontalCards from "src/components/homeCards/horizontalMenuCards";
 
 const Home = () => {
     const {height, width} = useWindowDimensions();

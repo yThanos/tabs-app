@@ -1,7 +1,7 @@
 import { ActivityIndicator, SafeAreaView, View, StyleSheet } from "react-native"
 import { useEffect, useState } from "react"
 import CheckBox from 'expo-checkbox'
-import useFetch from "../../../hooks/useFetch"
+import useFetch from "src/hooks/useFetch"
 import { Text, TextInput, Button } from "react-native-paper";
 
 const CadEnderecos = ({cep, handlePress, handleSuccess}) => {

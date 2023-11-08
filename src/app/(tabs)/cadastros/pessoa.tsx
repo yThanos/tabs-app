@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import { ActivityIndicator, SafeAreaView, ScrollView, TouchableOpacity, View, Image, Dimensions } from "react-native"
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "src/hooks/useFetch";
 import { useEffect, useState } from "react";
 import { SelectList } from "react-native-dropdown-select-list";
 import { StyleSheet } from "react-native";

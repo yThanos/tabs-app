@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router"
-import TabItem from "../../components/tabItem"
+import TabItem from "src/components/tabItem"
 
 export default () => {
     return (
@@ -11,7 +11,7 @@ export default () => {
                     tabBarLabel: "Home",
                     headerShown: false,
                     tabBarLabelStyle: {color: "#fff", paddingBottom: 5},
-                    tabBarIcon: ({focused}) => <TabItem focused={focused} icon="home"/>
+                    tabBarIcon: ({focused, color, size}) => <TabItem focused={focused} icon="home"/>
                 }}
                 />
             <Tabs.Screen
