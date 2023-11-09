@@ -1,19 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { View, SafeAreaView, useWindowDimensions, FlatList, TouchableOpacity } from "react-native";
 import { IconButton, Text } from "react-native-paper";
-import HorizontalCards from "src/components/homeCards/horizontalMenuCards";
+import HorizontalCards from "../../components/homeCards/horizontalMenuCards";
+import { AuthContext } from "../../context/auth.context";
 
 const Home = () => {
+    const {user} = useContext(AuthContext);
     const {height, width} = useWindowDimensions();
     const data = [["0 hr","timer-sand","Horas trabalhadas"], ["0 hr","archive-clock","xxxxxxxxxx"],["xxxx","account","xxxxxxxxxx"]];
     const [grid, setGrid] = useState(false);
+    console.log(user)
     return (
         <SafeAreaView>
             <View>
                 <View style={{backgroundColor:"#043F63", height: height * 0.07, marginTop: -3}}>
                     <View style={{flexDirection: "row", paddingLeft: 20, paddingTop: 5}}>
                         <Text variant="displayMedium" style={{color: "#fff", fontSize: 22}}>Bem vindo, </Text>
-                        <Text variant="displayMedium" style={{color: "#FF7A0F", fontSize: 22}}>Vitor</Text>
+                        <Text variant="displayMedium" style={{color: "#FF7A0F", fontSize: 22}}>{user?.name ?? ""}</Text>
                     </View>
                 </View>
                 <View style={{backgroundColor: "#043F63", height: height * 0.06, opacity: 0.9}}>

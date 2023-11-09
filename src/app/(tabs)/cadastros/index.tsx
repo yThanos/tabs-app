@@ -1,26 +1,23 @@
 import { useRouter } from "expo-router";
-import { View, SafeAreaView } from "react-native"
-import { Button, Text } from "react-native-paper";
+import { View, SafeAreaView, useWindowDimensions, TouchableOpacity } from "react-native"
+import { Icon, Text } from "react-native-paper";
+import CadListItem from "../../../components/cadstros/listItem";
 
 const HomeCadastros = () => {
+    const {width, height} = useWindowDimensions();
     const router = useRouter();
     const screens = [
-        'enderecos',
-        'pessoa',
-        'documentos'
+        ['enderecos', 'routes'],
+        ['pessoa', 'account'],
+        ['documentos','card-account-details']
     ]
     return (
         <SafeAreaView>
             <View style={{height: '100%', width: '100%', padding: 15, alignItems: 'center'}}>
                 <View>
-                    <Text>Home Cadastros</Text>
-                </View>
-                <View>
                     {
                         screens.map((screen, index) => (
-                            <Button key={index} onPress={() => router.push(`/cadastros/${screen}`)}>
-                                <Text>{screen.toUpperCase()}</Text>
-                            </Button>
+                            <CadListItem key={index} screen={screen} onPress={()=>router.push(screen[0])} width={width}/>
                         ))
                     }
                 </View>

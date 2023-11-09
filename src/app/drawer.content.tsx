@@ -1,20 +1,19 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { useRouter } from 'expo-router';
 import { useContext } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Avatar, Icon, Text } from 'react-native-paper';
-import { AuthContext } from '../auth.context';
+import { AuthContext } from '../context/auth.context';
 
 const CustomDrawerContent = ({navigation}) => {
     const router = useRouter();
-    const {logOut} = useContext(AuthContext);
+    const {logOut, user} = useContext(AuthContext);
     return (
         <DrawerContentScrollView>
             <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: 'center', paddingRight: 15}}>
             <View style={{flexDirection: "row", padding: 15, alignItems: 'center'}}>
                 <Avatar.Icon icon={"account"} />
-                <Text style={{fontSize: 22, paddingLeft: 10}}>Vitor</Text>
+                <Text style={{fontSize: 22, paddingLeft: 10}}>{user?.name ?? ""}</Text>
             </View>
                 <TouchableOpacity onPress={()=> {
                     logOut();

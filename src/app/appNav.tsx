@@ -1,17 +1,17 @@
 import { Slot, Stack } from "expo-router"
-import { PaperProvider, configureFonts, MD3LightTheme, Icon } from "react-native-paper";
+import { PaperProvider, configureFonts, MD3LightTheme, Icon, ActivityIndicator } from "react-native-paper";
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 import { useContext, useEffect, useState } from "react";
 import Drawer from "expo-router/drawer";
 import CustomDrawerContent from "./drawer.content";
 import { View } from "react-native";
-import { AuthContext } from "../auth.context";
+import { AuthContext } from "../context/auth.context";
 
 SplashScreen.preventAutoHideAsync();
 
 const StackLayout = () => {
-    const {logged} = useContext(AuthContext);
+    const {token, loading} = useContext(AuthContext);
     const [appReady, setAppReady] = useState(false);
 
     const [loaded] = useFonts({
@@ -85,6 +85,10 @@ const StackLayout = () => {
         },
     }
 
+    useEffect(()=>{
+        console.log(loading)
+    }, [loading])
+
     useEffect(() => {
         if (loaded) {
             init();
@@ -93,16 +97,21 @@ const StackLayout = () => {
 
     async function init() {
         await SplashScreen.hideAsync();
+        console.log(token);
         setAppReady(true);
     }
-    
+
     if (!appReady) {
+        console.log("return slot");
         return <Slot />;
     }
 
+    console.log("return app");
+    console.log(token);
+    
     return (
         <PaperProvider theme={{ ...theme, fonts }}>
-            {logged ? (
+            {token != null ? (
                 <>
                 <Drawer initialRouteName='(tabs)' drawerContent={CustomDrawerContent}>
                     <Drawer.Screen
@@ -130,7 +139,6 @@ const StackLayout = () => {
                 </Stack>
                 </>
             )
-
             }
         </PaperProvider>
     )
