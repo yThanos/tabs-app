@@ -1,5 +1,5 @@
+import { createContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext(null)
 
@@ -8,39 +8,39 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        async function loadStorageData() {
-            setLoading(true)
-            const storagedUser = await AsyncStorage.getItem('user')
-            const storagedToken = await AsyncStorage.getItem('token')
-
-            if(storagedUser && storagedToken){
-                setUser(JSON.parse(storagedUser))
-                setToken(storagedToken)
-            }
-            setLoading(false)
-        }
-        loadStorageData()
-        }, [])
-
-    const login = async (user) => {
+    const login = (user) => {
         setLoading(true)
-        await AsyncStorage.setItem('user', JSON.stringify(user))
-        await AsyncStorage.setItem('token', user.token)
         setToken(user.token)
         setUser(user)
+        AsyncStorage.setItem("user", JSON.stringify(user)).then(()=>{setLoading(false)})
+    }
+
+    const logOut = () => {
+        AsyncStorage.removeItem("user")
+        setToken(null)
+        setUser(null)
         setLoading(false)
     }
 
-    const logOut = async () => {
-        await AsyncStorage.removeItem('user')
-        await AsyncStorage.removeItem('token')
-        setToken(null)
-        setUser(null)
+    const isLoggedIn = async () => {
+        try {
+            setLoading(true)
+            const user = await AsyncStorage.getItem("user")
+            if(!user) return setLoading(false)
+            setUser(JSON.parse(user))
+            setToken(JSON.parse(user).token)
+            setLoading(false)
+        } catch (e) {
+            console.log("LoggedIn Error: ", e)
+        }
     }
 
+    useEffect(() => {
+        isLoggedIn()
+    }, [])
+
     return (
-        <AuthContext.Provider value={{login, logOut, setToken, user, token, loading}}>
+        <AuthContext.Provider value={{token, loading, user, login, logOut}}>
             {children}
         </AuthContext.Provider>
     )

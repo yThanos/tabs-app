@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router"
-import TabItem from "src/components/tabItem"
+import TabItem from "../../components/tabItem"
 
 export default () => {
     return (

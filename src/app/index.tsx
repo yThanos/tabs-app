@@ -11,8 +11,8 @@ import { AuthContext } from "../context/auth.context";
 SplashScreen.preventAutoHideAsync();
 
 const StackLayout = () => {
-    const {token, loading} = useContext(AuthContext);
     const [appReady, setAppReady] = useState(false);
+    const {token, loading} = useContext(AuthContext);
 
     const [loaded] = useFonts({
         'Oxanium-Regular': require("src/assets/fonts/Oxanium-Regular.ttf"),
@@ -85,10 +85,6 @@ const StackLayout = () => {
         },
     }
 
-    useEffect(()=>{
-        console.log(loading)
-    }, [loading])
-
     useEffect(() => {
         if (loaded) {
             init();
@@ -101,18 +97,17 @@ const StackLayout = () => {
         setAppReady(true);
     }
 
-    if (!appReady) {
-        console.log("return slot");
-        return <Slot />;
+    if (!appReady || loading) {
+        return (
+            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+                <ActivityIndicator size="large" color="#043F63" />
+            </View>
+        );
     }
-
-    console.log("return app");
-    console.log(token);
     
     return (
         <PaperProvider theme={{ ...theme, fonts }}>
             {token != null ? (
-                <>
                 <Drawer initialRouteName='(tabs)' drawerContent={CustomDrawerContent}>
                     <Drawer.Screen
                             name="(tabs)"
@@ -131,13 +126,10 @@ const StackLayout = () => {
                             }}
                     />
                 </Drawer>
-                </>
             ) : (
-                <>
                 <Stack>
                     <Stack.Screen name="(auth)" options={{ headerShown: false }} />
                 </Stack>
-                </>
             )
             }
         </PaperProvider>

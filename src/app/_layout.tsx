@@ -1,5 +1,5 @@
 import AuthProvider from "../context/auth.context"
-import StackLayout from "./appNav"
+import StackLayout from "."
 
 const Layout = () =>{
     return(
